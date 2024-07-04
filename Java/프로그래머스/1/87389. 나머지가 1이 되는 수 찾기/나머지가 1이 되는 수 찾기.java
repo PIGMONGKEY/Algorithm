@@ -1,7 +1,14 @@
-import java.util.stream.*;
-
 class Solution {
     public int solution(int n) {
-        return IntStream.range(2, n).filter(i -> n % i == 1).findFirst().orElse(0);
+        int answer = 0;
+        int i = 2;
+        
+        while (answer == 0) {
+            if (n % i == 1)
+                answer = i;
+            i++;
+        }
+        
+        return answer;
     }
 }
