@@ -5,7 +5,7 @@ class Solution {
         String answer = "";
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         
         for (String number : s.split(" ")) {
             int n = Integer.parseInt(number);
