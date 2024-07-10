@@ -2,13 +2,15 @@ import java.math.*;
 
 class Solution {
     public int solution(int n) {
-        return fibonacci(new BigInteger("0"), new BigInteger("1"), 1, n).remainder(new BigInteger("1234567")).intValue();
-    }
-    
-    BigInteger fibonacci(BigInteger a, BigInteger b, int cur, int n) {
-        if (cur == n)
-            return b;
+        BigInteger[] memo = new BigInteger[n+1];
         
-        return fibonacci(b, a.add(b), cur + 1, n);
+        memo[0] = new BigInteger("0");
+        memo[1] = new BigInteger("1");
+        
+        for (int i=2; i<=n; i++) {
+            memo[i] = memo[i-2].add(memo[i-1]);
+        }
+        
+        return memo[n].remainder(new BigInteger("1234567")).intValue();
     }
 }
