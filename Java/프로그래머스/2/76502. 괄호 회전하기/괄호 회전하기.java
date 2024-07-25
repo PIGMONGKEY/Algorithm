@@ -23,30 +23,14 @@ class Solution {
         char c;
         for (int i=0; i<length; i++) {
             c = sb.charAt(i);
-            switch (c) {
-                case '{':
-                case '[':
-                case '(':
-                    stack.push(c);
-                    break;
-                case '}':
-                    if (stack.isEmpty())
-                        return false;
-                    if (stack.peek() == '{')
-                        stack.pop();
-                    break;
-                case ']':
-                    if (stack.isEmpty())
-                        return false;
-                    if (stack.peek() == '[')
-                        stack.pop();
-                    break;
-                case ')':
-                    if (stack.isEmpty())
-                        return false;
-                    if (stack.peek() == '(')
-                        stack.pop();
-                    break;
+            
+            if (c == '{' || c == '[' || c == '(')
+                stack.push(c);
+            else {
+                if (stack.isEmpty())
+                    return false;
+                if (stack.peek() == c - 1 || stack.peek() == c - 2)
+                    stack.pop();
             }
         }
         
