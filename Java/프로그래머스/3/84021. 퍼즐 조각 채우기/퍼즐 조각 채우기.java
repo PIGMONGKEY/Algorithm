@@ -55,20 +55,6 @@ class Solution {
             }
         }
         
-//         emptySpaces.forEach(es -> {
-//             es.forEach(s -> {
-//                 System.out.print(s[0] + " " + s[1] + " / ");
-//             });
-//             System.out.println();
-//         });
-        
-//         blocks.forEach(es -> {
-//             es.forEach(s -> {
-//                 System.out.print(s[0] + " " + s[1] + " / ");
-//             });
-//             System.out.println();
-//         });
-        
         for (int i=0; i<emptySpaces.size(); i++) {
             space = emptySpaces.get(i);
             for (int j=0; j<blocks.size(); j++) {
@@ -140,27 +126,11 @@ class Solution {
         if (emptySpace.size() != block.size())
             return false;
         
-//         System.out.print("target : ");
-//         emptySpace.forEach(b -> {
-//             System.out.print(b[0] + " " + b[1] + " / ");
-//         });
-//         System.out.println();
-        
-//         System.out.print("origin : ");
-//         block.forEach(b -> {
-//             System.out.print(b[0] + " " + b[1] + " / ");
-//         });
-//         System.out.println();
-        
         // 블럭의 모든 좌표를 0,0 으로 만들어보면서 확인
         for (int i=0; i<block.size(); i++) {
             makeCertainPointTo00(block, i);
             // 블럭을 90도씩 회전시키면서 확인
             for (int j=0; j<4; j++) {
-                // block.forEach(b -> {
-                //     System.out.print(b[0] + " " + b[1] + " / ");
-                // });
-                // System.out.println();
                 // 만약 모든 좌표가 일치하면 return true;
                 if (haveSamePoints(emptySpace, block))
                     return true;
