@@ -8,7 +8,7 @@ class Solution {
     private static int toLTime;
     private static int toETime;
     
-    public int solution(String[] maps) {
+    public int solution(String[] maps) throws InterruptedException {
         int height = maps.length;
         int width = maps[0].length();
         char c;
@@ -39,8 +39,19 @@ class Solution {
             }
         }
         
-        toLTime = findShortestPath(places[0], places[1]);
-        toETime = findShortestPath(places[1], places[2]);
+        Thread toLThread = new Thread(() -> {
+            toLTime = findShortestPath(places[0], places[1]);
+        });
+        
+        Thread toEThread = new Thread(() -> {
+            toETime = findShortestPath(places[1], places[2]);
+        });
+        
+        toLThread.start();
+        toEThread.start();
+        
+        toLThread.join();
+        toEThread.join();
         
         return toLTime == -1 || toETime == -1 ? -1 : toLTime + toETime;
     }
