@@ -47,8 +47,8 @@ class Solution {
             toETime = findShortestPath(places[1], places[2]);
         });
         
-        toLThread.start();
-        toEThread.start();
+        toLThread.run();
+        toEThread.run();
         
         toLThread.join();
         toEThread.join();
