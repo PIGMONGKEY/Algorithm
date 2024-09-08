@@ -3,7 +3,6 @@ import java.util.*;
 class Solution {
     public long solution(int n, int[] works) {
         int temp = 0;
-        long answer = 0;
         
         PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
         
@@ -24,12 +23,15 @@ class Solution {
         
         pq.add(temp);
         
-        for (Integer work : pq) {
-            if (work <= 0)
-                continue;
-            answer += ((long) work * (long) work);
-        }
+        // for (Integer work : pq) {
+        //     if (work <= 0)
+        //         continue;
+        //     answer += ((long) work * (long) work);
+        // }
         
-        return answer;
+        return pq.stream()
+            .filter(a -> a > 0)
+            .mapToLong(a -> (long) a * (long) a)
+            .sum();
     }
 }
