@@ -1,13 +1,13 @@
 class Solution {
     public int solution(int[] stones, int k) {
-        int tempMid, mid, start = 1, end = Integer.MIN_VALUE, answer = 0;
+        int tempMid, mid, start = Integer.MAX_VALUE, end = Integer.MIN_VALUE, answer = 0;
         
         for (int stone : stones) {
-            // start = stone <= start ? stone : start;
+            start = stone <= start ? stone : start;
             end = stone >= end ? stone : end;
         }
         
-        return findPeopleCnt(start, 1, end + 1, k, stones);
+        return findPeopleCnt(start - 1, 1, end + 1, k, stones);
     }
     
     private boolean crossCheck(int peopleCnt, int k, int[] stones) {
