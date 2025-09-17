@@ -58,7 +58,6 @@ class Solution {
             
             while (!deleteQueue.isEmpty()) {
                 int[] pos = deleteQueue.poll();
-                System.out.println(pos[0] + " " + pos[1]);
                 tempArrayList.remove(pos);
                 map[pos[0]][pos[1]]--;
             }
