@@ -1,37 +1,33 @@
 import java.util.*;
+import java.util.stream.*;
+import java.math.*;
 
 class Solution {
     public String solution(int[] numbers) {
         String answer = "";
-        String[] array = new String[numbers.length];
-        int sum = 0;
-        
-        for (int i=0; i<numbers.length; i++)
-            array[i] = Integer.toString(numbers[i]);
-        
-        Arrays.sort(array, new Comparator<String>() {
+        Comparator<String> comp = new Comparator<>() {
             @Override
             public int compare(String o1, String o2) {
-                String a = o1, b = o2;
+                String s1 = o1, s2 = o2;
                 
                 if (o1.equals(o2))
                     return 0;
                 
                 for (int i=0; i<2; i++) {
-                    a = a.concat(o1);
-                    b = b.concat(o2);
+                    s1 = s1.concat(o1);
+                    s2 = s2.concat(o2);
                 }
                 
-                return a.compareTo(b) * -1;
+                return s1.compareTo(s2) * -1;
             }
-        });
+        };
         
-        for (String number : array) {
-            answer = answer.concat(number);
-            sum += Integer.parseInt(number);
-        }
+        answer = Arrays.stream(numbers)
+            .mapToObj((item) -> Integer.toString(item))
+            .sorted(comp)
+            .collect(Collectors.joining());
         
-        if (sum == 0)
+        if (answer.charAt(0) == '0')
             answer = "0";
         
         return answer;
